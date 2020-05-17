@@ -20,7 +20,7 @@ Router.get("/salut" , (req,res) =>{
     res.status(HttpStatus.OK).json(data);
 })
 
-app.use(cors());
+//app.use(cors());
 app.use(Router);
 
 app.listen(3005 , ()=>{
