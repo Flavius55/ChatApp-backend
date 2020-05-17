@@ -18,7 +18,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "build": "webpack --config webpack.conf.js"
+    "build": "webpack --config prod.config.js"
+    
   },
   "author": "",
   "license": "ISC"
