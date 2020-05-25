@@ -11,13 +11,13 @@ const data = [{key:"value"}];
 app.use(bodyParser.json())
 
 
-Router.post("/api" , (req,res) =>{
+Router.post("/" , (req,res) =>{
     data.push(req.body.email);
     res.status(HttpStatus.OK).json(req.body.email);
     //console.log(data);
 })
 
-Router.get("/api" , (req,res) =>{
+Router.get("/" , (req,res) =>{
     console.log(data);
     res.status(HttpStatus.OK).json(data);
 })
