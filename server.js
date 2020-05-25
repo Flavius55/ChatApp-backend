@@ -5,6 +5,7 @@ const HttpStatus = require('http-status-codes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+require('dotenv').config();
 
 const data = [{key:"value"}];
 
@@ -26,7 +27,7 @@ app.use(cors());
 
 app.use(Router);
 
-app.listen(3005 , ()=>{
-    console.log("App is listening on port 3005");
+app.listen(process.PORT , ()=>{
+    console.log(`App is listening on port ${process.PORT}`);
 });
 
