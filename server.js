@@ -6,21 +6,24 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-const data = [];
+const data = [{key:"value"}];
 
 app.use(bodyParser.json())
 
-Router.post("/salut" , (req,res) =>{
+
+Router.post("/api" , (req,res) =>{
     data.push(req.body.email);
     res.status(HttpStatus.OK).json(req.body.email);
     //console.log(data);
 })
-Router.get("/salut" , (req,res) =>{
+
+Router.get("/api" , (req,res) =>{
     console.log(data);
     res.status(HttpStatus.OK).json(data);
 })
 
-//app.use(cors());
+app.use(cors());
+
 app.use(Router);
 
 app.listen(3005 , ()=>{
