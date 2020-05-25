@@ -24,10 +24,10 @@ Router.get("/" , (req,res) =>{
 })
 
 app.use(cors());
-
+//app.use(express.static("public"));
 app.use(Router);
 
-app.listen(process.PORT , ()=>{
-    console.log(`App is listening on port ${process.PORT}`);
+app.listen(process.env.PORT , ()=>{
+    console.log(`App is listening on port ${process.env.PORT}`);
 });
 
