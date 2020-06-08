@@ -6,29 +6,35 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const Datastore = require('nedb');
+const pool = require("./stored_things/db");
 require('dotenv').config();
+
 
 const database = new Datastore("./stored_things/database.db");
 database.loadDatabase();
 //database.insert({name:"flavius"});
 
 app.use(bodyParser.json())
-Router.post("/" , (req,res) =>{
+Router.post("/" , async (req,res) =>{
     database.insert({
         name:req.body.name,
         mesage:req.body.mesage
     });
+     const newMesage = await pool.query
+     ("INSERT INTO mesaj (username,mesage) VALUES ('"+req.body.name+"','"+req.body.mesage+"')");
     res.status(HttpStatus.OK).json({
         name:req.body.name,
         mesage:req.body.mesage
     });
 })
-Router.get("/" , (req,res) =>{
-    database.find({} , (err,data)=>{
-        console.log(data);
-        res.status(HttpStatus.OK).json(data);
-    });
-
+Router.get("/" , async (req,res) =>{
+    // database.find({} , (err,data)=>{
+    //     console.log(data);
+    //     res.status(HttpStatus.OK).json(data);
+    // });
+    const getData = await pool.query
+    ("SELECT * FROM mesaj");
+    res.status(HttpStatus.OK).json(getData);
     
 })
 
